@@ -1,20 +1,27 @@
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.Random;
 public class Operate {
-    public static void write(String str) throws IOException {//写入txt文件
+    public static void writeAns(String str) throws IOException {//写入txt文件
         String filepath = "Answers.txt";
-       // String filepath = "F:\\java\\homework1\\src\\Answers.txt";
         FileOutputStream fileOutputStream = new FileOutputStream(filepath,true);
         fileOutputStream.write(str.getBytes());
         fileOutputStream.write('\n');
         fileOutputStream.close();
 
     }
+    public static void writeExe(String str) throws IOException {//写入txt文件
+        String filepath2 = "Exercise.txt";
+        FileOutputStream fileOutputStream2 = new FileOutputStream(filepath2,true);
+        fileOutputStream2.write(str.getBytes());
+        fileOutputStream2.write('\n');
+        fileOutputStream2.close();
+
+    }
+
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();
@@ -29,6 +36,9 @@ public class Operate {
         char[] ch2 = new char[n];
         String[] str = new String[n];//用于存储运算式
         int[] ans = new int[n];//用于存储答案
+        String[] strall = new String[n];
+        Set<String> set = new TreeSet<String>();
+        int len = set.size();//set的长度
 
         Random r = new Random();
         for(int i = 0;i<n;i++){
@@ -45,18 +55,20 @@ public class Operate {
             if(f1[i] == 1) {ch1[i] ='-';}
             if(f2[i] == 1) {ch2[i] ='-';}
         }
-
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //System.out.println(formatter.format(calendar.getTime()));
         String time =formatter.format(calendar.getTime()).toString();//获取当时的时间来记录存储时间
         try {//记录操作时间
-            write(time);
+            writeAns(time);
+            writeExe(time);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        for(int i = 0;i<n;i++) {
+
+
+        for(int i = 0;i<n;) {
             if (count[i] == 2) {
                 str[i] = i + 1 + ".四则运算题目" + (i + 1) + ": " + a[i] + "" + ch1[i] + "" + b[i] + "" + ch2[i] + "" + c[i];
                 if (ch1[i] == '+' && ch2[i] == '+') ans[i] = a[i] + b[i] + c[i];
@@ -70,24 +82,25 @@ public class Operate {
                 else ans[i] = a[i] - b[i];
 
             }
+             str[i] = str[i] + "=";
+             strall[i] = str[i]+String.valueOf(ans[i]);
 
-            str[i] = str[i]+"="+String.valueOf(ans[i]);
+             set.add(strall[i]);
 
-            try {
-                write(str[i]);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (set.size() > len){
+                try {
+                    writeAns(str[i]);
+                    writeExe(strall[i]);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                i++;
+                len = set.size();
+
+
             }
 
         }
-
-
-
-//
-//        for(int i = 0;i<n;i++){
-//            System.out.println(ch1[i]+""+ch2[i]);
-//        }
-
 
 
     }
