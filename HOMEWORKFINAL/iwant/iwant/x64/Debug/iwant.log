@@ -1,0 +1,6 @@
+﻿  Main.cpp
+C:\Users\HP.LAPTOP-JUSOBNLA\Desktop\HOMEWORKFINAL\iwant\iwant\Main.cpp(76,86): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\HP.LAPTOP-JUSOBNLA\Desktop\HOMEWORKFINAL\iwant\iwant\Main.cpp(79,83): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\HP.LAPTOP-JUSOBNLA\Desktop\HOMEWORKFINAL\iwant\iwant\Main.cpp(85,96): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\HP.LAPTOP-JUSOBNLA\Desktop\HOMEWORKFINAL\iwant\iwant\Main.cpp(88,92): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  iwant.vcxproj -> C:\Users\HP.LAPTOP-JUSOBNLA\Desktop\HOMEWORKFINAL\iwant\x64\Debug\iwant.exe
